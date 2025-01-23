@@ -38,7 +38,7 @@ func moveZeroes(nums []int) {
 
 		if nums[j] == 0 {
 			if nums[i] != 0 {
-        t := nums[i]
+				t := nums[i]
 				nums[i] = nums[j]
 				nums[j] = t
 			}
