@@ -42,7 +42,7 @@ import (
 
 func mergeAlternately(word1, word2 string) string {
 	i, j := 0, 0
-  res := make([]byte, len(word1)+len(word2))
+	res := make([]byte, len(word1)+len(word2))
 	for i < len(word1) && j < len(word2) {
 		res = append(res, word1[i])
 		res = append(res, word2[j])
@@ -50,12 +50,11 @@ func mergeAlternately(word1, word2 string) string {
 		j++
 	}
 
-
 	res = append(res, word1[i:]...)
 	res = append(res, word2[j:]...)
 
-  sRes := strings.Trim(strings.Join(strings.Split(string(res),""), ""),"\u0000")
-  return sRes
+	sRes := strings.Trim(strings.Join(strings.Split(string(res), ""), ""), "\u0000")
+	return sRes
 }
 
 func main() {
