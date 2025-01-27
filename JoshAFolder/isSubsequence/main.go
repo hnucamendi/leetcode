@@ -21,30 +21,28 @@
 // Follow up: Suppose there are lots of incoming s, say s1, s2, ..., sk where k >= 109, and you want to check one by one to see if t has its subsequence. In this scenario, how would you change your code?
 package main
 
-import (
-	"fmt"
-	"slices"
-	"strings"
-)
+import "fmt"
 
 func isSubsequence(s string, t string) bool {
-	sArr := strings.Split(s, "")
-	for i := range len(t) {
-		if slices.Contains(sArr, string(t[i])) {
-			if i+1 <= len(sArr) {
-				fmt.Println(sArr[i])
-				sArr = append(sArr[:i], sArr[i+1])
-			}
-			sArr = []string{}
-		}
-	}
-	if len(sArr) <= 0 {
+	fmt.Println(len(s))
+	if len(s) == 0 {
 		return true
 	}
-	return false
 
+	i := 0
+	for _, j := range t {
+		if byte(j) == s[i] {
+			i++
+			if len(s) == i {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func main() {
-
+	s1 := ""
+	s2 := "ahbgdc"
+	fmt.Println(isSubsequence(s1, s2))
 }
