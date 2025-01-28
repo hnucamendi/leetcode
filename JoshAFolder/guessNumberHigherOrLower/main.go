@@ -38,7 +38,20 @@
 
 package main
 
-func guess(n int) int { return 0 }
+import "fmt"
+
+// guess is a given API in the leetcode problem. 
+// not part of the solution
+func guess(n int) int {
+	p := 6
+	if n > p {
+		return -1
+	}
+	if n > p {
+		return 1
+	}
+	return 0
+}
 
 /**
  * Forward declaration of guess API.
@@ -50,35 +63,23 @@ func guess(n int) int { return 0 }
  */
 
 func guessNumber(n int) int {
-	g := guess(n)
-	if g == 0 {
-		return n
-	}
-	c := n
+	low, high := 1, n
 
-	// number is too high
-	if g == -1 {
-    c--
-    guess(c)
-		for c > n {
-			c--
-			guess(c)
-		}
-	}
+	for low < high {
+		mid := (low + high) >> 1
+		g := guess(mid)
 
-	// number is too low
-	if g == 1 {
-    c++
-    guess(c)
-		for c < n {
-			c++
-			guess(c)
-		}
+		if g == 0 {
+			return mid
+		} else if g > 0 {
+			low = mid + 1
+		}else {
+      high = mid - 1
+    }
 	}
-
-	return c
+	return low
 }
 
 func main() {
-
+	fmt.Println(guessNumber(10))
 }
