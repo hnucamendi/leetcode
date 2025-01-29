@@ -38,25 +38,29 @@ package main
 import "fmt"
 
 func kidsWithCandies(candies []int, extraCandies int) []bool {
-	var res []bool
-	for i, j := range candies {
-		e := j + extraCandies
-		// for i := range candies {
-		if e < candies[i] {
-			res = append(res, false)
-			break
+	res := make([]bool, len(candies))
+	largestNumber := 0
+
+	for i := range candies {
+		if candies[i] > largestNumber {
+			largestNumber = candies[i] 
 		}
-		res = append(res, true)
-
-		// }
-
 	}
 
+	for j := range candies {
+		if candies[j]+extraCandies >= largestNumber {
+      res[j] =  true
+		} else {
+      continue
+		}
+	}
 	return res
 }
 
 func main() {
-	input := []int{2, 3, 5, 1, 3}
-	extra := 3
+	// input := []int{2, 3, 5, 1, 3}
+  // extra := 3
+	input := []int{2,8,7}
+	extra := 1
 	fmt.Println(kidsWithCandies(input, extra))
 }
