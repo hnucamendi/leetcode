@@ -36,18 +36,15 @@ package main
 import "fmt"
 
 func maxOperations(nums []int, k int) int {
-	i, j := 0, len(nums)-1
 	count := 0
-	for range nums {
-    fmt.Println(i, j, nums)
-		if (i > len(nums) || j < len(nums)) && nums[i]+nums[j] == k {
+	used := make(map[int]int, len(nums))
+	for _, j := range nums {
+		if used[k-j] > 0 {
 			count++
-			nums = append(nums[:i], nums[i+1:]...)
-			nums = append(nums[j:], nums[:j-1]...)
-			fmt.Println(nums)
+			used[k-j] -= 1
+		} else {
+			used[j] += 1
 		}
-		i++
-		j--
 	}
 	return count
 }
